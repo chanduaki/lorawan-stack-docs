@@ -20,6 +20,7 @@ Additional fields may be specified in HTTP requests by appending them as query s
 $ curl --location \
   --header "Authorization: Bearer NNSXS.XXXXXXXXX" \
   --header 'Accept: application/json' \
+  --header 'User-Agent: my-integration / my-integration-version' \
   'https://thethings.example.com/api/v3/applications/app1/devices/dev1?field_mask=name,description,locations'
 ```
 
@@ -29,6 +30,7 @@ The same request in tenant `tenant1` on a multi-tenant deployment:
 $ curl --location \
   --header "Authorization: Bearer NNSXS.XXXXXXXXX" \
   --header 'Accept: application/json' \
+  --header 'User-Agent: my-integration / my-integration-version' \
   'https://tenant1.thethings.example.com/api/v3/applications/app1/devices/dev1?field_mask=name,description,locations'
 ```
 
@@ -41,7 +43,8 @@ $ curl --location \
   --header 'Authorization: Bearer NNSXS.XXXXXXXXX' \
   --header 'Accept: application/json' \
   --header 'Content-Type: application/json' \
-  --request POST 'https://thethings.example.com/api/v3/events' \
+  --header 'User-Agent: my-integration / my-integration-version' \
+  --request POST \
   --data-raw '{
     "identifiers":[{
         "device_ids":{
@@ -49,21 +52,23 @@ $ curl --location \
             "application_ids":{"application_id":"app1"}
         }
     }]
-}'
+  }' \
+  'https://thethings.example.com/api/v3/events'
 ```
 
 If you want to create a device, perform multi step actions, or write shell scripts, it's best to use the [CLI]({{< ref "getting-started/cli" >}}).
 
-If you want to do something like register a device manually, you need to make calls to the Identity Server, Join Server, Network Server and Application Server. See the [API Reference](({{< ref "reference/api" >}})) for detailed information about which messages go to which endpoints. 
+If you want to do something like register a device manually, you need to make calls to the Identity Server, Join Server, Network Server and Application Server. See the [API Reference]({{< ref "reference/api" >}}) for detailed information about which messages go to which endpoints. 
 
-To register a device `newdev1` in application `app1`, first, register the `DevEUI`, `JoinEUI` and cluster addresses in the Identity Server. This is also where you register a friendly name, description, attributes, location, and more - see all fields in the [API Reference](({{< ref "reference/api" >}})):
+To register a device `newdev1` in application `app1`, first, register the `DevEUI`, `JoinEUI` and cluster addresses in the Identity Server. This is also where you register a friendly name, description, attributes, location, and more - see all fields in the [API Reference]({{< ref "reference/api" >}}):
 
 ```bash
 $ curl --location \
   --header 'Accept: application/json' \
   --header 'Authorization: Bearer NNSXS.XXXXXXXXX' \
   --header 'Content-Type: application/json' \
-  --request POST 'https://thethings.example.com/api/v3/applications/app1/devices' \
+  --header 'User-Agent: my-integration / my-integration-version' \
+  --request POST \
   --data-raw '{
     "end_device": {
       "ids": {
@@ -84,7 +89,8 @@ $ curl --location \
         "ids.join_eui"
       ]
     }
-  }'
+  }' \
+  'https://thethings.example.com/api/v3/applications/app1/devices'
 ```
 
 Register LoRaWAN settings in the Network Server:
@@ -93,7 +99,8 @@ Register LoRaWAN settings in the Network Server:
 $ curl --location \
   --header 'Accept: application/json' \
   --header 'Authorization: Bearer NNSXS.XXXXXXXXX' --header 'Content-Type: application/json' \
-  --request PUT 'https://thethings.example.com/api/v3/ns/applications/app1/devices/newdev1' \
+  --header 'User-Agent: my-integration / my-integration-version' \
+  --request PUT \
   --data-raw '{
     "end_device": {
       "supports_join": true,
@@ -117,7 +124,8 @@ $ curl --location \
         "frequency_plan_id"
       ]
     }
-  }'
+  }' \
+  'https://thethings.example.com/api/v3/ns/applications/app1/devices/newdev1'
 ```
 
 Register the `DevEUI` and `JoinEUI` in the Application Server:
@@ -125,7 +133,8 @@ Register the `DevEUI` and `JoinEUI` in the Application Server:
 ```bash
 $ curl --location \
   --header 'Authorization: Bearer NNSXS.XXXXXXXXX' --header 'Content-Type: application/json' \
-  --request PUT 'https://thethings.example.com/api/v3/as/applications/app1/devices/newdev1' \
+  --header 'User-Agent: my-integration / my-integration-version' \
+  --request PUT \
   --data-raw '{
     "end_device": {
       "ids": {
@@ -141,7 +150,8 @@ $ curl --location \
         "ids.join_eui"
       ]
     }
-  }'
+  }' \
+  'https://thethings.example.com/api/v3/as/applications/app1/devices/newdev1'
 ```
 
 Finally, register the `DevEUI`, `JoinEUI`, cluster addresses, and keys in the Join Server:
@@ -149,7 +159,8 @@ Finally, register the `DevEUI`, `JoinEUI`, cluster addresses, and keys in the Jo
 ```bash
 $ curl --location \
   --header 'Authorization: Bearer NNSXS.XXXXXXXXX' --header 'Content-Type: application/json' \
-  --request PUT 'https://thethings.example.com/api/v3/js/applications/app1/devices/newdev1' \
+  --header 'User-Agent: my-integration / my-integration-version' \
+  --request PUT \
   --data-raw '{
     "end_device": {
       "ids": {
@@ -175,5 +186,20 @@ $ curl --location \
         "root_keys.app_key.key"
       ]
     }
-  }'
+  }' \
+  'https://thethings.example.com/api/v3/js/applications/app1/devices/newdev1'
 ```
+
+## Best Practices
+
+### Send a User-Agent Header
+
+Set a User-Agent header containing your integration name and version. That way, a network operator can target specific integrations and versions in their firewall rules in case some integration misbehaves, instead of blocking all versions of curl or your integration completely.
+
+### Look for X-Ratelimit-* Response Headers
+
+{{% tts %}} sends responses containing information about how many requests your integration has made and how many are remaining. See [here](https://auth0.com/docs/policies/rate-limit-policy#review-http-response-headers) for more information about how to act on this information.
+
+### Look for X-Warning Headers
+
+{{% tts %}} sends responses containing this header to warn about issues that may become errors in the future.

@@ -22,18 +22,18 @@ Some endpoints require a message to be sent as part of the request. For example,
 
 ```bash
 $ curl --location \
-     --header 'Authorization: Bearer NNSXS.XXXXXXXXX' \
-     --header 'Content-Type: application/json' \
-     --request POST \
-     'https://thethings.example.com/api/v3/events' \
-     --data-raw '{
+  --header 'Authorization: Bearer NNSXS.XXXXXXXXX' \
+  --header 'Content-Type: application/json' \
+  --request POST \
+  --data-raw '{
     "identifiers":[{
         "device_ids":{
             "device_id":"dev1",
             "application_ids":{"application_id":"app1"}
         }
     }]
-}'
+  }' \
+  'https://thethings.example.com/api/v3/events'
 ```
 
 > Fields that are empty or zero are not returned in requests, even if they are specified in a field mask. 
