@@ -74,23 +74,9 @@ Reboot your gateway to enable the new network configuration, and now you can con
 
 ### Downloading Global_conf.json
 
-Firstly, you will need to generate a `global_conf.json` file required to add a custom channel plan to your gateway. Follow the steps below to generate the required json file.
+To configure the gateway for the correct channel plans, you need a `global_conf.json`.
 
-> **Warning:** The manual configuration of the frequency plan - required to make it work on the The Things (Enterprise) Stack - may result in a mismatch for some of the frequency bands used for the Multitech Gateway.
-
-The Gateway Configuration Server can be used to generate a proper `global_conf.json` configuration file for your gateway. You will need a Gateway API key with the `View gateway information` right enabled. The instructions for the same can be found in the [Adding Gateways]({{< ref "/gateways/adding-gateways" >}}) guide.
-
-Open the command prompt in Windows or any Linux terminal to run a curl command (as shown below) to generate the required `global_conf.json` file in your current working directory.
-
-Make sure you replace `thethings.example.com` with your server address:
-
-```bash
-$ curl -XGET \
-    "https://thethings.example.com/api/v3/gcs/gateways/{GATEWAY_ID}/semtechudp/global_conf.json" \
-    -H "Authorization: Bearer {GTW_API_KEY}" > ~/global_conf.json
-```
-
-> Note: Replace the required fields in the above command and run it.
+The Gateway Configuration Server can be used to retrieve a proper `global_conf.json` configuration file for your gateway. Follow instructions [here]({{< relref src="../semtech-udp-packet-forwarder" >}}).
 
 ### Configuring the Packet Forwarder
 
