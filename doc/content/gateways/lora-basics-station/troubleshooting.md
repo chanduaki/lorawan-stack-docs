@@ -1,5 +1,5 @@
 ---
-title: "Troubleshooting LoRa Basics™ Station"
+title: "Troubleshooting LBS"
 description: ""
 ---
 

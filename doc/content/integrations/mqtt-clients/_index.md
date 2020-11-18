@@ -1,7 +1,7 @@
 ---
 title: "MQTT Clients"
 description: ""
-weight: 40
+weight: 
 ---
 
 This section contains detailed guides for integrating with popular MQTT clients. 

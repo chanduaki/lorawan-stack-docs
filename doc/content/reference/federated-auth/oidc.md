@@ -1,7 +1,6 @@
 ---
 title: "OpenID Connect"
 description: ""
-distributions: ["Enterprise"]
 weight: 3
 ---
 

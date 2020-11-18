@@ -50,7 +50,7 @@ In the bottom of the edit view, you can click **Delete user** to delete the user
 
 {{< figure src="users-delete.png" alt="Deleting a User" >}}
 
->**Note:** When deleting users, their user IDs stay reserved in the system, it is not possible to create a new user with the same user ID. In most cases you'll probably want to update a user to set its state to "suspended" instead.
+> **NOTE:** When deleting users, their user IDs stay reserved in the system, it is not possible to create a new user with the same user ID. In most cases you'll probably want to update a user to set its state to "suspended" instead.
 
 {{< /tabs/tab >}}
 
@@ -68,15 +68,12 @@ $ ttn-lw-cli users create colleague \
   --primary-email-address colleague@thethings.network
 ```
 
-You will be prompted to enter the password:
+Output:
 
-```
+```bash
 Please enter password:***************
 Please confirm password:***************
 ```
-
-<details><summary>Output</summary>
-
 ```json
 {
   "ids": {
@@ -96,7 +93,6 @@ Please confirm password:***************
   "state": "STATE_APPROVED"
 }
 ```
-</details>
 
 ## Inviting Users
 
@@ -106,13 +102,13 @@ You can create invitations for users to join the network with the `users invitat
 $ ttn-lw-cli users invitations create colleague@thethings.network
 ```
 
-After you do this, you will be able to list the invitations you've sent:
+After you do this, you'll be able to list the invitations you've sent:
 
 ```bash
 % ttn-lw-cli users invitations list
 ```
 
-<details><summary>Output</summary>
+Output:
 
 ```json
 [{
@@ -123,13 +119,11 @@ After you do this, you will be able to list the invitations you've sent:
   "updated_at": "2019-12-19T11:41:29.486Z"
 }]
 ```
-</details>
 
-You will also be able to delete an invitation if you want to revoke it:
+And delete an invitation if you want to revoke it:
 
 ```bash
 $ ttn-lw-cli users invitations delete colleague@thethings.network
-```
 
 ## Listing Users
 
@@ -139,7 +133,7 @@ To list users with the CLI, use the `users list` command. Make sure to specify t
 $ ttn-lw-cli users list --name --state --admin
 ```
 
-<details><summary>Output</summary>
+Output:
 
 ```json
 [{
@@ -159,9 +153,9 @@ $ ttn-lw-cli users list --name --state --admin
   "admin": true
 }]
 ```
-</details>
 
-> **Tip:** Use the pagination flags `--limit` and `--page` when there are many users.
+> **TIP:** Use the pagination flags `--limit` and `--page` when there are many users.
+
 
 ## Searching for Users
 
@@ -171,7 +165,7 @@ To search for users with the CLI, use the `users search` command. Make sure to s
 $ ttn-lw-cli users search --id-contains new --name
 ```
 
-<details><summary>Output</summary>
+Output:
 
 ```json
 [{
@@ -183,9 +177,8 @@ $ ttn-lw-cli users search --id-contains new --name
   "name": "New User"
 }]
 ```
-</details>
 
-> **Tip:** Use the pagination flags `--limit` and `--page` when there are many users.
+> **TIP:** Use the pagination flags `--limit` and `--page` when there are many users.
 
 ## Updating Users
 
@@ -195,7 +188,7 @@ To update users with the CLI, use the `users update` command. The following comm
 $ ttn-lw-cli users update new-user --state APPROVED --admin true
 ```
 
-<details><summary>Output</summary>
+Output:
 
 ```json
 {
@@ -208,13 +201,12 @@ $ ttn-lw-cli users update new-user --state APPROVED --admin true
   "admin": true
 }
 ```
-</details>
 
 ## Deleting Users
 
 To delete a user, use the `users delete` command.
 
->**Note:** When deleting users, their user IDs stay reserved in the system, it is not possible to create a new user with the same user ID. In most cases you'll probably want to update a user to set its state to "suspended" instead.
+> **NOTE:** When deleting users, their user IDs stay reserved in the system, it is not possible to create a new user with the same user ID. In most cases you'll probably want to update a user to set its state to "suspended" instead.
 
 {{< /tabs/tab >}}
 

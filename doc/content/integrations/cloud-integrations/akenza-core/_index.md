@@ -8,6 +8,6 @@ weight:
 
 <!--more-->
 
-## Prerequisites
+## Requirements
 
 1. A user account on Akenza Core.

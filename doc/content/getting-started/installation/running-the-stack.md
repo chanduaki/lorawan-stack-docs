@@ -20,21 +20,13 @@ Next, we need to initialize the database of the Identity Server:
 $ docker-compose run --rm stack is-db init
 ```
 
->**Note**: If you receive an error running {{% tts %}}, make sure a {{% tts %}} container isn't already running. Use `docker ps` to see running containers.
-
-For the Storage Integration available in {{% tts %}} Enterprise, we need to initialize the database of the Application Server as well:
-
-```bash
-$ docker-compose run --rm stack storage-db init
-```
-
 {{% tts %}} Enterprise requires a tenant to be present, even if multi-tenancy is not included in the license. We now create this tenant:
 
 ```bash
 $ docker-compose run --rm stack is-db create-tenant
 ```
 
->**Note:** This will take the Tenant ID from the configuration.
+> This will take the Tenant ID from the configuration.
 
 We'll now create an initial `admin` user. Make sure to give it a good password.
 
@@ -56,9 +48,9 @@ $ docker-compose run --rm stack is-db create-oauth-client \
   --redirect-uri "code"
 ```
 
-We do the same for the Console. 
+We do the same for the console. 
 
-> For `--secret`, make sure to enter the same value as you set for `console.oauth.client-secret` in the `ttn-lw-stack-docker.yml` file in the [Configuration]({{< relref "configuration" >}}) step.
+> For `--secret`, make sure to enter the same value as you set for `console.oauth.client-secret` in the [Configuration]({{< relref "configuration" >}}) step.
 
 ```bash
 $ docker-compose run --rm stack is-db create-oauth-client \

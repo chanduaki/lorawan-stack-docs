@@ -10,21 +10,19 @@ This section explains how to set up Application and device specific payload form
 
 ## Create an Application Payload Formatter
 
-To create an Application payload formatter, navigate to the **Applications** tab and choose your application.
+To create an Application payload formatter, navigate to the **Applications** tab. Choose your Application.
 
 Within the **Application Overview**, select the **Payload Formatters** dropdown in the left menu.
 
 Choose **Uplink** or **Downlink**.
 
-Choose a **Formatter type**. 
-
->**Note:** See the [Javascript]({{< relref "javascript" >}}), [CayenneLPP]({{< relref "cayenne" >}}), and [Device Repository]({{< relref "device-repo" >}}) payload formatter documentation for an explanation of the diffent types of payload formatters.
-
 {{< figure src="../application.png" alt="Application" >}}
+
+Choose a type of payload formatter. See the [Javascript]({{< relref "javascript" >}}), [CayenneLPP]({{< relref "cayenne" >}}), and [Device Repository]({{< relref "device-repo" >}}) payload formatter documentation for an explanation of the diffent types of payload formatters.
 
 ## Create a Device Specific Payload Formatter
 
-To create a device specific payload formatter, navigate to the **Applications** tab. Choose your application.
+To create a Device Specific payload formatter, navigate to the **Applications** tab. Choose your Application.
 
 Within the **Application Overview**, select **End Devices** in the left menu.
 
@@ -34,8 +32,6 @@ Within the **End Device Overview**, select the **Payload Formatters** tab in the
 
 Choose **Uplink** or **Downlink**.
 
-Choose a **Formatter type**. 
-
->**Note:** See the [Javascript]({{< relref "javascript" >}}), [CayenneLPP]({{< relref "cayenne" >}}), and [Device Repository]({{< relref "device-repo" >}}) payload formatter documentation for an explanation of the diffent types of payload formatters.
-
 {{< figure src="../device.png" alt="Device" >}}
+
+Choose a type of payload formatter. See the [Javascript]({{< relref "javascript" >}}), [CayenneLPP]({{< relref "cayenne" >}}), and [Device Repository]({{< relref "device-repo" >}}) payload formatter documentation for an explanation of the diffent types of payload formatters.

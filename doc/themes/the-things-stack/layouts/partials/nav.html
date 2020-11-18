@@ -2,7 +2,7 @@
   <div class="container">
     <div class="navbar-brand">
       <a class="navbar-item" href="{{ relURL "/" }}">
-        <img class="logo" src="{{ "img/TTS-logo.svg" | relURL }}">
+        <img src="{{ "img/TTS-horizontal-logo.svg" | relURL }}">
         <p class="navbar-item is-size-7">{{- .Site.Params.version -}}</p>
       </a>
       {{- $currentPage := . -}}
@@ -29,13 +29,11 @@
         {{- end }}
         {{- end }}
         {{- if .Site.Menus.buttons }}
-          {{- if not .Params.hidebuttons -}}
-          <div class="navbar-item">
-            {{- range .Site.Menus.buttons }}
-            <a class="button is-primary{{ if $currentPage.IsMenuCurrent "buttons" . }} is-active{{ end }}" href="{{ .URL }}">{{ .Pre }}{{ .Name }}</a>
-            {{- end }}
-          </div>
-          {{- end -}}
+        <div class="navbar-item">
+          {{- range .Site.Menus.buttons }}
+          <a class="button is-primary{{ if $currentPage.IsMenuCurrent "buttons" . }} is-active{{ end }}" href="{{ .URL }}">{{ .Pre }}{{ .Name }}</a>
+          {{- end }}
+        </div>
         {{- end }}
       </div>
     </div>

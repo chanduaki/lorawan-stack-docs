@@ -1,8 +1,6 @@
 ---
 title: "AWS ECS"
 description: ""
-distributions: "Enterprise"
-weight: 2
 ---
 
 {{% tts %}} can be deployed to AWS as a set of highly available services on AWS ECS using AWS CloudFormation.
