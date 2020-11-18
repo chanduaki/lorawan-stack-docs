@@ -391,4 +391,9 @@ details + blockquote {
 table.fixed { table-layout:fixed; }
 table.fixed td { overflow: auto; }
 
+blockquote p::before {
+  content: "Note: ";
+  font-weight: bold;
+}
+
 @import "highlight.scss";
