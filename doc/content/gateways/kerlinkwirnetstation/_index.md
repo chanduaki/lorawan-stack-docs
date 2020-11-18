@@ -3,7 +3,11 @@ title: "Kerlink Wirnet Station"
 description: ""
 ---
 
-Kerlink Wirnet Station is a LoRaWAN gateway, whose technical specifications can be found in [the official documentation](https://www.kerlink.com/product/wirnet-station/). This page guides you to connect it to {{% tts %}}.
+This page guides you to connect Kerlink Wirnet Station to {{% tts %}}.
+
+<!--more-->
+
+This gateway's technical specifications can be found in [the official Kerlink documentation](https://www.kerlink.com/product/wirnet-station/). 
 
 ## Prerequisites
 
@@ -20,20 +24,22 @@ Create an API Key with Gateway Info rights for this gateway using the same instr
 
 ## Configuration
 
-All further steps will assume the gateway is available at `192.168.4.155`, the stack address is `thethings.example.com`, gateway ID is `example-gtw` and gateway API key is `NNSXS.GTSZYGHE4NBR4XJZHJWEEMLXWYIFHEYZ4WR7UAI.YAT3OFLWLUVGQ45YYXSNS7HTVTFALWYSXK6YLJ6BDUNBPJMRH3UQ`, please replace these by the values appropriate for your setup.
+All further steps will assume the gateway is available at `<gateway-ip>`, {{% tts %}} is `<server-address>`, gateway ID is `<gateway-id>` and gateway API key is `<gateway-api-key>`, please replace these by the values appropriate for your setup.
+
+>**Note:** Replace these with the values appropriate for your setup.
 
 ### Provisioning
 
 1. Execute: 
 ```bash
-$ curl -sL 'https://raw.githubusercontent.com/TheThingsNetwork/kerlink-wirnet-firmware/v0.0.2/provision.sh' | bash -s -- 'wirnet-station' '192.168.4.155' 'thethings.example.com' 'example-gtw' 'NNSXS.GTSZYGHE4NBR4XJZHJWEEMLXWYIFHEYZ4WR7UAI.YAT3OFLWLUVGQ45YYXSNS7HTVTFALWYSXK6YLJ6BDUNBPJMRH3UQ'
+$ curl -sL 'https://raw.githubusercontent.com/TheThingsNetwork/kerlink-wirnet-firmware/v0.0.2/provision.sh' | bash -s -- 'wirnet-station' <gateway-ip> <server-address> <gateway-id> <gateway-api-key>
 ```
 
 Please refer to [Kerlink Wirnet provisioning documentation](https://github.com/TheThingsNetwork/kerlink-wirnet-firmware/tree/v0.0.1#provisioning) if more detailed up-to-date documentation is necessary.
 
 > NOTE: To avoid being prompted for `root` user password several times, you may add your SSH public key as authorized for `root` user on the gateway, for example, by `ssh-copy-id root@192.168.4.155`.
 
-## Troubleshoting
+## Troubleshooting
 
 Packet forwarder logs are located at `/mnt/fsuser-1/lora/var/log/lora.log`. You can access them by e.g.:
 

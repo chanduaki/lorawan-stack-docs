@@ -16,7 +16,7 @@ This section contains instructions for installing the command-line interface.
 $ brew install TheThingsNetwork/lorawan-stack/ttn-lw-stack
 ```
 
-> Note: When installing with `brew`, auto-completion is enabled automatically.
+>**Note:** When installing with `brew`, auto-completion is enabled automatically.
 
 #### Linux
 
@@ -25,7 +25,7 @@ $ sudo snap install ttn-lw-stack
 $ sudo snap alias ttn-lw-stack.ttn-lw-cli ttn-lw-cli
 ```
 
-> Note: When installing with `snap`, auto-completion is enabled automatically.
+>**Note:** When installing with `snap`, auto-completion is enabled automatically.
 
 ### Binaries
 
@@ -39,7 +39,7 @@ The command-line needs to be configured to connect to your deployment on `thethi
 2. Command-line flag: `-c /path/to/ttn-lw-cli.yml`
 3. Save as `.ttn-lw-cli.yml` in `$XDG_CONFIG_HOME`, your home directory, or the working directory.
 
-> NOTE: When using the snap packages, `~/.ttn-lw-cli.yml` will fail with permission errors. Choose a different path.
+>**Note:** When using the snap packages, `~/.ttn-lw-cli.yml` will fail with permission errors. Choose a different path.
 
 ### Generate configuration file
 
@@ -49,13 +49,15 @@ For a standard deployment on `thethings.example.com`, all you need is:
 $ ttn-lw-cli use thethings.example.com [--fetch-ca] [--user] [--overwrite]
 ```
 
+>**Note:** On Windows, use `ttn-lw-cli.exe` instead of `ttn-lw-cli`.
+
 This will generate and save the required CLI config file. By default, the file is saved on the current directory, use the `--user` to save it under the user config directory.
 
 If the deployment is using a CA that is not already trusted by your system, use the `--fetch-ca` flag to also connect to the server and retrieve the CA required for establishing secure communication.
 
-> NOTE: If the file exists already, it is not overwritten and an error is printed instead. You can use `--overwrite` to overwrite the existing configuration file.
+>**Note:** If the file exists already, it is not overwritten and an error is printed instead. You can use `--overwrite` to overwrite the existing configuration file.
 
-> NOTE: You can also use the `--grpc-port` and `--oauth-server-address` flags to override the default values for the gRPC port and the OAuth server address. These are not needed for standard deployments.
+>**Note:** You can also use the `--grpc-port` and `--oauth-server-address` flags to override the default values for the gRPC port and the OAuth server address. These are not needed for standard deployments.
 
 ### Manually creating configuration file
 
@@ -72,6 +74,12 @@ join-server-grpc-address: 'thethings.example.com:8884'
 device-claiming-server-grpc-address: 'thethings.example.com:8884'
 device-template-converter-grpc-address: 'thethings.example.com:8884'
 qr-code-generator-grpc-address: 'thethings.example.com:8884'
+```
+
+If you are using an `https` port other than `443`, you need to specify that port, e.g.:
+
+```yaml
+oauth-server-address: 'https://thethings.example:8885/oauth'
 ```
 
 If your deployment uses a custom certificate authority, you'll need to add:
@@ -102,4 +110,12 @@ For `bash`, this directory is typically `/etc/bash_completion.d/`:
 
 ```bash
 $ sudo cp ./ttn-lw-cli-autocomplete /etc/bash_completion.d/
+```
+
+Generating and sourcing an auto-completion PowerShell script on Windows is slightly modified:
+
+```bash
+$ ttn-lw-cli.exe complete --shell powershell --executable ttn-lw-cli.exe > ttn-lw-cli-autocomplete.ps1
+
+$ . ./ttn-lw-cli-autocomplete.ps1
 ```
