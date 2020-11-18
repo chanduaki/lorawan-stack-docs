@@ -52,9 +52,16 @@ Subheadings use Title Casing. Since the title is a h1, everything in the content
 
 ## Notes
 
-Use the `>` markdown code, and include the word note to distinguish it from a code block.
+Use the `>` markdown code. "Note: " will automatically be added at the beginning of your note (by CSS).
 
->Note: if you need help with any CLI command, use the `--help` flag to get a list of subcommands, flags and their description and aliases.
+> This is a note.
+>This is also a note (space after the Markdown code doesn't matter).
+
+If you don't want "Note: " added, use HTML tags:
+
+<blockquote>This is a note.</blockquote>
+
+> If you need help with any CLI command, use the `--help` flag to get a list of subcommands, flags and their description and aliases.
 
 ## Images
 

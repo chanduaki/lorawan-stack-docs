@@ -119,7 +119,8 @@ Please respect the following guidelines for content in our documentation site.
   - In Chrome: activate the **Developer Tools** and toggle the **Device Toolbar**. In the **Device Toolbar**, select **Laptop with HiDPI screen** (add it if not already there), and click **Capture Screenshot** in the menu on the right.
   - In Firefox: enter **Responsive Design Mode**. In the **Device Toolbar**, select "Laptop with HiDPI screen" (add it if not already there) and **Take a screenshot of the viewport**.
 - Use `**Strong**` when referring to buttons in the Console.
-- Use `>Note:`to add a note.
+- Use `>`to add a note. "Note: " will automatically be added at the beginning of your note.
+  - If you don't want "Note: " added, use HTML tags <blockquote><p></p></blockquote>
 - Use fenced code blocks with a language:
   - `bash` for lists of environment variables: `SOME_ENV="value"`.
   - `bash` for CLI examples. Prefix commands with `$ `. Wrap strings with double quotes `""` (except when working with JSON, which already uses double quotes).
