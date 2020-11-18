@@ -367,7 +367,7 @@ details + blockquote {
   padding: 12px;
 }
 
-.new-in-version, .distribution-inline {
+.new-in-version, .distribution-inline, .deprecated {
   vertical-align: super;
   font-size: 60%;
   color: $red;
