@@ -5,7 +5,7 @@ services:
   cockroach:
     # In production, replace 'latest' with tag from https://hub.docker.com/r/cockroachdb/cockroach/tags
     image: cockroachdb/cockroach:latest
-    command: start --http-port 26256 --insecure
+    command: start-single-node --http-port 26256 --insecure
     restart: unless-stopped
     volumes:
       - ${DEV_DATA_DIR:-.env/data}/cockroach:/cockroach/cockroach-data
@@ -77,6 +77,8 @@ services:
       - "8885:8885"
       - "1887:1887"
       - "8887:8887"
+      - "1888:1888"
+      - "8888:8888"
       - "1700:1700/udp"
 
     # If using custom certificates:
