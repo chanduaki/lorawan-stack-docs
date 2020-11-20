@@ -27,6 +27,8 @@ host, and also to use it as the default host. See the [TLS Options configuration
 
 >**Note:** Make sure that you use the correct `tls` configuration depending on whether you are using Let's Encrypt or your own certificate files.
 
+>**Note:** If you are using your own certificate files, make sure to uncomment the lines that define `source` type, `root-ca`, `certificate` and `key`. The paths assigned to these do not need to be altered, because they point to the location of these files inside the Docker container, and not on your machine.
+
 ### HTTP
 
 In the `http` section, HTTP server keys for encrypting and verifying cookies are configured, as well
