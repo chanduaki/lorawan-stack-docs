@@ -74,10 +74,10 @@ Some additional examples are included below. All settings are available at the [
 To tell {{% tts %}} which frequencies are configured in an ABP device, set the `mac-settings.factory-preset-frequencies` parameter. For example, to configure a device using the default EU868 frequencies, use the following command:
 
 ```bash
-$ ttn-lw-cli devices update <device_id> --mac-settings.factory-preset-frequencies 868100000,868300000,868500000,867100000,867300000,867500000,867700000,867900000
+$ ttn-lw-cli devices update <application_id> <device_id> --mac-settings.factory-preset-frequencies 868100000,868300000,868500000,867100000,867300000,867500000,867700000,867900000
 ```
 
->**Note:** For ABP devices, `mac-settings.factory-preset-frequencies` should be specified on `device create` or the settings will only take effect after MAC reset.
+> **Note:** For ABP devices, `mac-settings.factory-preset-frequencies` should be specified on `device create` or the settings will only take effect after MAC reset.
 
 ### Set Duty Cycle
 
@@ -87,14 +87,14 @@ To change the duty cycle, set the `desired-max-duty-cycle` parameter. For exampl
 $ ttn-lw-cli end-devices set <app-id> <device-id> --mac-settings.desired-max-duty-cycle DUTY_CYCLE_1024
 ```
 
->**Note:** See the [End Device API Reference]({{< ref "reference/api/end_device#message:MACSettings" >}}) for available fields and definitions of constants. DUTY_CYCLE_1024 represents 1/1024 ≈ 0.098%.
+> **Note:** See the [End Device API Reference]({{< ref "reference/api/end_device#message:MACSettings" >}}) for available fields and definitions of constants. DUTY_CYCLE_1024 represents 1/1024 ≈ 0.098%.
 
 ### Enable ADR
 
 To enable ADR, set the `mac-settings.use-adr` parameter
 
 ```bash
-$ ttn-lw-cli end-devices set <app-id> <device-id> --mac-settings.use-adr true 
+$ ttn-lw-cli end-devices set <app-id> <device-id> --mac-settings.use-adr=true
 ```
 
 ### Set RX1 Delay
